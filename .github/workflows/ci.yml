@@ -9,7 +9,8 @@ on:
       - main 
 
 jobs:
-  test:
+  build:
+  
     runs-on: ubuntu-latest
 
     steps:
@@ -19,12 +20,18 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
-          go-version: '1.16'  # Adjust the Go version as needed
+          go-version: '1.21.2'
+          cache-dependency-path: backend/go.sum
 
       - name: Install Dependencies
         run: go get .
-      - name: Build
-        run: go build ./backend/...
-      - name: Run Tests
-        run: go test ./backend/...
+
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+       - name: Build
+         run: go build ./backend/...
+       - name: Run Tests
+         run: go test ./backend/...
 
