@@ -84,7 +84,7 @@ func GetandInterpretThreeCards(ctx *gin.Context) {
 
 	//here we send our three Cards and the requestID in JSON form to the client, to be rendered in the UI.
 
-	ctx.JSON(http.StatusAccepted, gin.H{"cards": jsonCards, "requestID": requestID})
+	ctx.JSON(http.StatusOK, gin.H{"cards": jsonCards, "requestID": requestID})
 
 	// here we use Open AI's API to generate a reading of our three cards, we store this reading locally to return it to the user later.
 	go func() {
